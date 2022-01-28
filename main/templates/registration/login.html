@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container pt-5">
+    {% if form.errors %}
+    <p>
+        Логин или пароль неправильный. Попробуйте снова.
+    </p>
+    {% endif %}
+
+    {% if next %}
+    {% if user.is_authenticated %}
+    <p>
+        У вас нет сюда доступа.
+    </p>
+    {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table class="table">
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" class="btn btn-primary" value="Войти"/>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+</div>
+{% endblock %}

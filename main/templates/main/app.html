@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% if not in_work_now %}
+<main role="main" class="container">
+    <div class="main-content">
+        <h4>
+            Кого мы подыскиваем?
+            <i class="bi bi-emoji-wink"></i>
+            {% csrf_token %}
+        </h4>
+        <form action="" method="post">
+            <div class="alert alert-danger col-12">
+                <h5>
+                    Интересы
+                </h5>
+                <div class="row">
+                    {% verbatim %}
+
+                    <div class="form-group col-6">
+                        <div class="form-group">
+                            <select multiple class="form-control form-control-sm" size=5 name="" id="interest_list">
+                                <option v-for="(interest, idx) in interests" @click="selectedInterest=idx">
+                                    {{ interest }}
+                                </option>
+                            </select>
+                            <small id="helpId" class="form-text text-muted">Чем больше список, тем дольше поиск <i
+                                    class="bi bi-hourglass-split"></i></small>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-sm" id="interest_text_new"
+                                   placeholder="Введите увлечение для поиска" v-model="new_interest">
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-6">
+                                <input class="btn btn-danger" type="button" value="Удалить из списка"
+                                       @click="removeInterest(idx)">
+                            </div>
+                            <div class="col-6">
+                                <input class="btn btn-success" type="button" value="Добавить в список"
+                                       @click="addInterest()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <button type="button" class="btn btn-primary btn-wide" @click="start_search()">Искать!</button>
+
+
+            {% endverbatim %}
+        </form>
+    </div>
+</main>
+
+{% else %}
+<main role="main" class="container main-content">
+    <div class="alert alert-danger col-12">
+        Пожалуйста подождите! Вы уже запустили поиск!
+    </div>
+</main>
+{% endif %}
+
+
+
+
+{% else %}
+Please, auth!
+{% endif %}
+{% endblock %}

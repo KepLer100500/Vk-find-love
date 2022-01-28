@@ -1,0 +1,73 @@
+.main-content {
+  padding: 1rem 1rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 0.5rem;
+}
+
+.alert {
+  margin-bottom: 0.5rem;
+}
+
+.btn-wide{
+  width: 300px;
+}
+
+h5 {
+  margin-bottom: 1rem;
+}
+
+.heart {
+  animation: heartbeat 1s infinite;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  left: 45%; top: 45%;
+
+  background-color: red;
+
+  transform: rotate(-45deg);
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+
+  position: absolute;
+  height: 50px;
+  width: 50px;
+
+  background-color: red;
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -25px;
+  left: 0;
+}
+
+.heart:after {
+  left: 25px;
+  top: 0;
+}
+
+@keyframes heartbeat
+{
+  0%
+  {
+    transform: scale( 1 )
+      rotate(-45deg);
+  }
+  20%
+  {
+    transform: scale( 1.1 )
+      rotate(-45deg);
+  }
+   40%
+  {
+    transform: scale( 1.2 )
+      rotate(-45deg);
+  }
+}

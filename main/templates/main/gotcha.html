@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+    <main class="container main-content">
+        {% for search in searches %}
+            <div class="alert alert-success col-12">
+                {% for candidate in candidates %}
+                    {% if search == candidate.search %}
+                        <div class="alert alert-info col-12">
+                           <div class="row">
+
+                                    <div class="alert alert-info col-3">
+                                        <img src="{{ candidate.photo_200 }}">
+                                    </div>
+
+                                    <div class="alert  col-3">
+                                        <a href="https://vk.com/id{{ candidate.vkid }}">{{ candidate.first_name }} {{ candidate.last_name }}</a>
+                                        <br>{{ candidate.bdate }}
+                                        {{ candidate.city }}
+                                        {{ candidate.country }}
+                                    </div>
+
+                                <div class="  col-6">
+                                {% for group in groups %}
+                                    {% if candidate == group.candidate %}
+                                        <div class="alert alert-primary">
+                                            {{ group.group_name }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </main>
+{% endblock %}
